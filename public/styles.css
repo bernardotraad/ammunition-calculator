@@ -1,0 +1,196 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&display=swap');
+
+body {
+    background-color: #000000;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 14px; /* Reduced font size */
+    color: #00ff00;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: url('imgs/bg.png') no-repeat center center fixed;
+    background-size: cover;
+}
+
+.container {
+    text-align: center;
+    width: 100%;
+    max-width: 800px;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
+    border: 2px solid #00ff00;
+    border-radius: 10px;
+    box-shadow: 0 0 20px #00ff00; /* Green neon glow */
+}
+
+h1 {
+    font-size: 2em; /* Reduced font size */
+    margin-bottom: 20px;
+    color: #00ff00;
+    text-shadow: 0 0 10px #00ff00; /* Green neon glow */
+}
+
+p {
+    font-size: 1em; /* Reduced font size */
+    margin-bottom: 20px;
+}
+
+.form-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.form-column {
+    flex: 1;
+    padding: 20px;
+    min-width: 300px;
+    background-color: #0a0a0a; /* Dark background */
+    border: 1px solid #00ff00;
+    border-radius: 10px;
+    margin: 10px;
+    box-sizing: border-box;
+    opacity: 0.9;
+    box-shadow: 0 0 10px #00ff00; /* Green neon glow */
+}
+
+h2 {
+    font-size: 1.5em; /* Reduced font size */
+    margin-bottom: 15px;
+    color: #00ff00;
+    text-shadow: 0 0 10px #00ff00; /* Green neon glow */
+}
+
+form {
+    margin: 20px 0;
+}
+
+label, input, select {
+    display: block;
+    margin: 10px auto;
+    width: 90%;
+    max-width: 300px;
+    color: #00ff00;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Aligns the checkbox to the left */
+    margin: 10px auto;
+    width: 100%;
+    max-width: 5em;
+}
+
+.checkbox-container input {
+    margin-right: 10px;
+    transform: scale(1.2);
+    accent-color: #00ff00; /* Green checkbox */
+}
+
+input, select {
+    padding: 10px;
+    background-color: #1f1f1f;
+    border: 1px solid #444;
+    color: white;
+    font-size: 1em;
+    border-radius: 5px;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+    outline: none;
+}
+
+input:focus, select:focus {
+    border-color: #00ff00;
+    box-shadow: 0 0 10px #00ff00; /* Green neon glow */
+}
+
+input.invalid, select.invalid {
+    border-color: red;
+}
+
+.error-message {
+    color: red;
+    font-size: 0.8em; /* Reduced font size */
+    height: 1em;
+}
+
+.success-message {
+    color: green;
+    font-size: 1em; /* Reduced font size */
+    margin-top: 20px;
+    display: none;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+button {
+    padding: 15px 30px;
+    background-color: #444;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 1em;
+    border-radius: 5px;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    outline: none;
+}
+
+button:hover {
+    background-color: #666;
+    box-shadow: 0 0 10px #00ff00; /* Green neon glow */
+}
+
+#resultado, #resultadoQuantidade {
+    color: red;
+    margin-top: 20px;
+    font-size: 1em;
+}
+
+hr {
+    border: 1px solid #444;
+    margin: 20px 0;
+}
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 1.5em; /* Reduced font size */
+    }
+
+    p, label, input, select, button, .error-message, .success-message {
+        font-size: 0.9em; /* Reduced font size */
+    }
+
+    .form-column {
+        min-width: 100%;
+        margin: 10px 0;
+    }
+
+    .checkbox-container {
+        justify-content: center; /* Aligns the checkbox to the center on small screens */
+    }
+
+    .checkbox-container input {
+        margin-right: 5px;
+    }
+}
+
+@media (max-width: 400px) {
+    h1 {
+        font-size: 1.2em; /* Reduced font size */
+    }
+
+    p, label, input, select, button, .error-message, .success-message {
+        font-size: 0.8em; /* Reduced font size */
+    }
+}
