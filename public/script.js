@@ -32,7 +32,7 @@ document.getElementById('descontoPredefinido').addEventListener('change', () => 
     calcularQuantidade();
 });
 
-async function calcular() {
+function calcular() {
     const data = {
         pistola: document.getElementById('pistola').value,
         fuzil: document.getElementById('fuzil').value,
@@ -44,29 +44,49 @@ async function calcular() {
         desconto: document.getElementById('desconto').value
     };
 
-    try {
-        const response = await fetch('/api/calculate', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        });
+    const precos = {
+        pistola: 1100,
+        fuzil: 720,
+        sub: 720,
+        escopeta: 11000,
+        sniper: 70000
+    };
 
-        const result = await response.json();
-        if (response.status === 200) {
-            document.getElementById('resultado').innerText = `Total: R$${result.total.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-            document.getElementById('mensagemSucesso').innerText = "Cálculo realizado com sucesso!";
-            document.getElementById('mensagemSucesso').style.display = 'block';
-        } else {
-            document.getElementById('mensagemErro').innerText = result.message;
-        }
-    } catch (error) {
-        document.getElementById('mensagemErro').innerText = "Erro ao calcular.";
+    const quantidade = {
+        pistola: parseInt(data.pistola) || 0,
+        fuzil: parseInt(data.fuzil) || 0,
+        sub: parseInt(data.sub) || 0,
+        escopeta: parseInt(data.escopeta) || 0,
+        sniper: parseInt(data.sniper) || 0
+    };
+
+    let total = 0;
+    for (let key in quantidade) {
+        total += quantidade[key] * precos[key];
     }
+
+    let descontoPercentual = 0;
+    if (data.aplicarDesconto) {
+        if (data.descontoPredefinido) {
+            descontoPercentual = parseFloat(data.descontoPredefinido);
+        } else if (data.desconto) {
+            descontoPercentual = parseFloat(data.desconto);
+        }
+
+        if (descontoPercentual > 0 && descontoPercentual <= 100) {
+            total -= total * (descontoPercentual / 100);
+        } else {
+            descontoPercentual = 0; // Invalid discount; no discount applied
+        }
+    }
+
+    document.getElementById('resultado').innerText = `Total: R$${total.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+    document.getElementById('mensagemSucesso').innerText = descontoPercentual > 0 ? "Cálculo realizado com desconto!" : "Cálculo realizado sem desconto!";
+    document.getElementById('mensagemSucesso').style.display = 'block';
 }
 
-async function calcularQuantidade() {
+
+function calcularQuantidade() {
     const valorDesejado = parseFloat(document.getElementById('valorDesejado').value) || 0;
     const tipoMunicao = document.getElementById('tipoMunicao').value;
 
@@ -75,42 +95,39 @@ async function calcularQuantidade() {
         return;
     }
 
-    const data = {
-        valorDesejado,
-        tipoMunicao,
-        aplicarDesconto: document.getElementById('aplicarDesconto').checked,
-        descontoPredefinido: document.getElementById('descontoPredefinido').value,
-        desconto: document.getElementById('desconto').value
+    const precos = {
+        pistola: 1100,
+        fuzil: 720,
+        sub: 720,
+        escopeta: 11000,
+        sniper: 70000
     };
 
-    try {
-        const response = await fetch('/api/calculate', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        });
+    let precoPorUnidade = precos[tipoMunicao];
 
-        const result = await response.json();
-        if (response.status === 200) {
-            const precoPorUnidade = {
-                pistola: 1100,
-                fuzil: 720,
-                sub: 720,
-                escopeta: 11000,
-                sniper: 70000
-            }[tipoMunicao];
-            const quantidade = Math.floor(valorDesejado / precoPorUnidade);
+    let descontoPercentual = 0;
+    if (document.getElementById('aplicarDesconto').checked) {
+        const descontoPredefinido = parseFloat(document.getElementById('descontoPredefinido').value) || 0;
+        const desconto = parseFloat(document.getElementById('desconto').value) || 0;
 
-            document.getElementById('resultadoQuantidade').innerText = `R$${valorDesejado.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} compram ${quantidade} munições de ${tipoMunicao}.`;
-        } else {
-            document.getElementById('mensagemErro').innerText = result.message;
+        if (descontoPredefinido > 0 && descontoPredefinido <= 100) {
+            descontoPercentual = descontoPredefinido;
+        } else if (desconto > 0 && desconto <= 100) {
+            descontoPercentual = desconto;
         }
-    } catch (error) {
-        document.getElementById('mensagemErro').innerText = "Erro ao calcular.";
+
+        if (descontoPercentual > 0 && descontoPercentual <= 100) {
+            precoPorUnidade -= precoPorUnidade * (descontoPercentual / 100);
+        } else {
+            descontoPercentual = 0; // Invalid discount; no discount applied
+        }
     }
+
+    const quantidade = Math.floor(valorDesejado / precoPorUnidade);
+
+    document.getElementById('resultadoQuantidade').innerText = `R$${valorDesejado.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} = ${quantidade} muni de ${tipoMunicao} ${descontoPercentual > 0 ? 'com desconto aplicado.' : 'sem desconto aplicado.'}`;
 }
+
 
 function limpar() {
     document.getElementById('municaoForm').reset();
