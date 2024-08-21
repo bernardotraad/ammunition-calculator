@@ -4,7 +4,7 @@ body {
     background-color: #000000;
     font-family: 'Source Code Pro', monospace;
     font-size: 14px; /* Reduced font size */
-    color: #00ff00;
+    color: #ffffff;
     line-height: 1.5;
     margin: 0;
     padding: 0;
@@ -23,16 +23,16 @@ body {
     padding: 20px;
     box-sizing: border-box;
     background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
-    border: 2px solid #00ff00;
+    border: 2px solid #ffffff;
     border-radius: 10px;
-    box-shadow: 0 0 20px #00ff00; /* Green neon glow */
+    box-shadow: 0 0 20px #ffffff; /* Green neon glow */
 }
 
 h1 {
     font-size: 2em; /* Reduced font size */
     margin-bottom: 20px;
-    color: #00ff00;
-    text-shadow: 0 0 10px #00ff00; /* Green neon glow */
+    color: #ffffff;
+    text-shadow: 0 0 10px #ffffff; /* Green neon glow */
 }
 
 p {
@@ -52,19 +52,19 @@ p {
     padding: 20px;
     min-width: 300px;
     background-color: #0a0a0a; /* Dark background */
-    border: 1px solid #00ff00;
+    border: 1px solid #ffffff;
     border-radius: 10px;
     margin: 10px;
     box-sizing: border-box;
     opacity: 0.9;
-    box-shadow: 0 0 10px #00ff00; /* Green neon glow */
+    box-shadow: 0 0 10px #ffffff; /* Green neon glow */
 }
 
 h2 {
     font-size: 1.5em; /* Reduced font size */
     margin-bottom: 15px;
-    color: #00ff00;
-    text-shadow: 0 0 10px #00ff00; /* Green neon glow */
+    color: #ffffff;
+    text-shadow: 0 0 10px #ffffff; /* Green neon glow */
 }
 
 form {
@@ -76,7 +76,7 @@ label, input, select {
     margin: 10px auto;
     width: 90%;
     max-width: 300px;
-    color: #00ff00;
+    color: #ffffff;
 }
 
 .checkbox-container {
@@ -91,7 +91,7 @@ label, input, select {
 .checkbox-container input {
     margin-right: 10px;
     transform: scale(1.2);
-    accent-color: #00ff00; /* Green checkbox */
+    accent-color: #ffffff; /* Green checkbox */
 }
 
 input, select {
@@ -107,8 +107,8 @@ input, select {
 }
 
 input:focus, select:focus {
-    border-color: #00ff00;
-    box-shadow: 0 0 10px #00ff00; /* Green neon glow */
+    border-color: #ffffff;
+    box-shadow: 0 0 10px #ffffff; /* Green neon glow */
 }
 
 input.invalid, select.invalid {
@@ -148,7 +148,7 @@ button {
 
 button:hover {
     background-color: #666;
-    box-shadow: 0 0 10px #00ff00; /* Green neon glow */
+    box-shadow: 0 0 10px #ffffff; /* Green neon glow */
 }
 
 #resultado, #resultadoQuantidade {
